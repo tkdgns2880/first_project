@@ -2,6 +2,12 @@ import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
+    const test = {
+        a : "aaa",
+        b : "bbb"
+    }
+    console.log(test["a"]);
+    // 객채에는 (test["a"]); 숫자에는 (test[0]);
     const emptyUser = {
         username : "",
         password : "",
@@ -42,9 +48,12 @@ function App() {
             }
         });
     }
-    const handleonRemove = name => {
-        setUserList(userList.filter(userList.setUserList !== userList));
+    const handleDeleteClick = (e) => {
+        setUserList(userList => [ ...userList.filter((user, index) => index !== parseInt(e.target.value)) ]);
     }
+    // const handleonRemove = name => {
+    //     setUserList(userList.filter(userList.setUserList !== userList));
+    // }
     return<>
     {/* 
        1. 입력 후에 엔터를 입력하면 다음 input 으로 포커스 이동
@@ -89,7 +98,7 @@ function App() {
                 <td>{username}</td>
                 <td>{password}</td>
                 <td>{name}</td>
-                <button onRemove={handleonRemove} value={userList}>삭제</button>
+                <button onRemove={handleDeleteClick} value={index}>삭제</button>
                 </tr>
                 );
             })
@@ -100,3 +109,5 @@ function App() {
 }
 export default App;
 // 클릭시 삭제 버튼 만들기
+// map(() => {}); map 함수 정의 
+// map 기존의 배열에서 새로운 배열로 변경시켜주는것
