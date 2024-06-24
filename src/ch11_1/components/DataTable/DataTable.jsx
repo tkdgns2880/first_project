@@ -9,7 +9,7 @@ function DataTable() {
     const [ products, setProducts ] = useState([ ...SAMPLE_PRODUCTS ]);
     return (
         <div className="table-main-container">
-            <DataTableHeader mode={mode} setMode={setMode}/>
+            <DataTableHeader mode={mode} setMode={setMode} setProduct={setProducts} />
             <DataTableBody mode={mode} products={products}/>
         </div>
     );
