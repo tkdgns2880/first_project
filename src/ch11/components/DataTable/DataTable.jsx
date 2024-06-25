@@ -8,7 +8,8 @@ function DataTable() {
     const [ isLoad, setLoad ] = useState(false); // 0 = 조회, 1 = 추가, 2 = 수정, 3 = 삭제
     const [ mode, setMode ] = useState(0); // 0 = 조회, 1 = 추가, 2 = 수정, 3 = 삭제
     const [ products, setProducts ] = useState([ ...SAMPLE_PRODUCTS ]);
-    const [ isdeleting, setDeleting] = useState(false);
+    const [ isDeleting, setDeleting] = useState(false);
+    const [ editProductId, setEditProductId ] = useState(0);
 
     useEffect(() => {
         localStorage.setItem("products", JSON.stringify(products));
@@ -23,8 +24,10 @@ function DataTable() {
             <DataTableHeader 
             mode={mode} 
             setMode={setMode} 
+            products={products}
             setProducts={setProducts} 
-            setDeleting={setDeleting} 
+            setDeleting={setDeleting}
+            editProductId={editProductId}
             />
             <DataTableBody 
             mode={mode}
@@ -32,7 +35,8 @@ function DataTable() {
             products={products}
             setProducts={setProducts} 
             isDeleting={isDeleting} 
-            setDeleting={setDeleting}/>
+            setDeleting={setDeleting}
+            setEditProductId={setEditProductId}/>
         </div>
     );
 }

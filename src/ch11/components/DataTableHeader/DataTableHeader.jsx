@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./style.css";
-import Swal from "sweetalert2";
 
-function DataTableHeader({ mode, setMode, setProducts, setDeleting }) {
+
+function DataTableHeader({ mode, setMode, product, setProducts, setDeleting, editProductId }) {
     const emptyProduct = {
         id : "",
         productName : "",
@@ -17,6 +17,11 @@ function DataTableHeader({ mode, setMode, setProducts, setDeleting }) {
         price : useRef()
     };
     const [ inputData, setInputData ] = useState({ ...emptyProduct });
+
+    useEffect(() => {
+        const [ product ] = products.filter(product => product.id === editProductId);
+        setInputData(!product ? { ...emptyProduct } : { ...product });
+    }, [editProductId]);
 
     const handleInputChange = (e) => {
         setInputData(inputData => ({
@@ -65,8 +70,28 @@ function DataTableHeader({ mode, setMode, setProducts, setDeleting }) {
             resetMode();
         }
         if(mode === 2) {
-            
-            alert("상품수정");
+            Swal.fire({
+                title : "상품 정보 수정",
+                showCanaelButton : true,
+                confirmButtonText : "확인",
+                cancelButtonText : "취소"
+            }).then(result => {
+                if(result.isConfirmed) {
+                    setProducts(products => [
+                        ...products.map(product => {
+                            if(product.id === editProductId) {
+                                const { id, ...rest } = inputData; // rest 아이디만 제외하고 나머지만 선택
+                                return {
+                                    ...product,
+                                    ...rest
+                                }
+                            }
+                            return product;
+                        })
+                    ]);
+                    resetMode();
+                }
+            });
         }
         if(mode === 3) {
             Swal.fire({
