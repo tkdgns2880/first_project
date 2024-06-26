@@ -34,7 +34,7 @@ function App() {
         }));
     }
     return (
-        <div className="main">
+        <div className="container">
             <div className="box" placeholder="프로필">
                 <div className="socer">
                     <h1>이름</h1>
