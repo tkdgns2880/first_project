@@ -1,11 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import MainContainer from "../MainContainer/MainContainer";
+import { useRecoilState } from "recoil";
 import * as s from "./style";
 import { FaBars } from "react-icons/fa";
+import { mainSidebarShowAtom } from "../../atoms/mainSidebarShowAtom";
+import MainContainer from "../MainContainer/MainContainer";
 
-function MainHeader({ setMainSidebarShow }) {
+function MainHeader() {
+    const [ mainSidebarShow, setMainSidebarShow ] = useRecoilState(mainSidebarShowAtom);
+
     const handleMainMenuToggleClick = () => {
-        setMainSidebarShow(isShow => true); // 열림 버튼이라 무조건 true 로 적용해줘야 한다
+        setMainSidebarShow(true); // 열림 버튼이라 무조건 true 로 적용해줘야 한다
     }
 
     return (

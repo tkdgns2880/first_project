@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Link, Route, Routes } from "react-router-dom";
 import MainContainer from "../../components/MainContainer/MainContainer";
-import RouteStudySubPage from "./RouteStudySubPage/RouteStudySubPage";
+import RouteStudySubPage from "../RouteStudySubPage1/RouteStudySubPage";
 
 function RouteStudyPage() {
     return (
@@ -25,4 +25,6 @@ function RouteStudyPage() {
     );
 }
 export default RouteStudyPage;
+
+// Link 부분 렌더링을 쓰기위해서 
 

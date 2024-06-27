@@ -1,9 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { FaBars, FaBook } from "react-icons/fa";
-import MainContainer from "../../MainContainer/MainContainer";
 import * as s from "./style";
+import { useRecoilState } from "recoil";
+import { mainSidebarShowAtom } from "../../../atoms/mainSidebarShowAtom";
+import MainContainer from "../../MainContainer/MainContainer";
 
-function MainSidebarHeader({setMainSidebarShow}) {
+function MainSidebarHeader() {
+    const [ mainSidebarShow, setMainSidebarShow ] = useRecoilState(mainSidebarShowAtom);
+
     const handleMainMenuToggleClick = () => {
         setMainSidebarShow(false); // 닫는버튼 false를 줘야 닫을수 있다
     }
